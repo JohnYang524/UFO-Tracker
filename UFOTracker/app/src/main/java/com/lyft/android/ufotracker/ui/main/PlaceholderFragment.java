@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.lyft.android.ufotracker.R;
 import com.lyft.android.ufotracker.databinding.FragmentMainBinding;
-import com.lyft.android.ufotracker.model.Sighting;
+import com.lyft.android.ufotracker.ui.model.Sighting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public class PlaceholderFragment extends Fragment {
 //        });
 
         // Create adapter passing in the contact data
-        SightingListAdapter adapter = new SightingListAdapter(createTestData());
+        SightingListAdapter adapter = new SightingListAdapter(createTestData(), getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         binding.sightingList.setLayoutManager(layoutManager);
         // Attach the adapter to the recyclerview to populate items
