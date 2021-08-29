@@ -11,9 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.lyft.android.ufotracker.R;
 import com.lyft.android.ufotracker.databinding.FragmentMainBinding;
+import com.lyft.android.ufotracker.model.Sighting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -52,13 +58,25 @@ public class PlaceholderFragment extends Fragment {
         binding = FragmentMainBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.sectionLabel;
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+//        final TextView textView = binding.sectionLabel;
+//        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
+
+        // Create adapter passing in the contact data
+        SightingListAdapter adapter = new SightingListAdapter(createTestData());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        binding.sightingList.setLayoutManager(layoutManager);
+        // Attach the adapter to the recyclerview to populate items
+        binding.sightingList.setAdapter(adapter);
+        // Divider
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(getActivity(),
+                layoutManager.getOrientation());
+        binding.sightingList.addItemDecoration(mDividerItemDecoration);
+
         return root;
     }
 
@@ -66,5 +84,15 @@ public class PlaceholderFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private List<Sighting> createTestData() {
+        List<Sighting> testData = new ArrayList<>();
+        testData.add(new Sighting("January 25, 2020 @ 6:00 AM", Sighting.SightingType.LAMPSHADE, "14 knots"));
+        testData.add(new Sighting("January 22, 2020 @ 7:00 PM", Sighting.SightingType.BLOB, "3 knots"));
+        testData.add(new Sighting("January 12, 2020 @ 6:20 AM", Sighting.SightingType.BLOB, "2 knots"));
+        testData.add(new Sighting("January 25, 2020 @ 11:00 PM", Sighting.SightingType.LAMPSHADE, "14 knots"));
+        testData.add(new Sighting("January 25, 2020 @ 10:00 PM", Sighting.SightingType.BLOB, "3 knots"));
+        return testData;
     }
 }
