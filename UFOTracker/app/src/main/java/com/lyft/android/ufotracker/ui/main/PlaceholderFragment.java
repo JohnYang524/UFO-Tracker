@@ -75,6 +75,7 @@ public class PlaceholderFragment extends Fragment {
         // Divider
         DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(getActivity(),
                 layoutManager.getOrientation());
+        mDividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.list_divider_margin_left));
         binding.sightingList.addItemDecoration(mDividerItemDecoration);
 
         return root;

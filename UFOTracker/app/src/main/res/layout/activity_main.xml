@@ -36,7 +36,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_icon_plus"
+                app:srcCompat="@drawable/add"
                 app:tint="@color/ufo_green" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

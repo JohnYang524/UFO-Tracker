@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--    <item android:right="@dimen/ufo_icon_size">-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <size android:height="1dp"/>-->
+<!--            <solid android:color="@color/white"/>-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--    <item android:left="@dimen/ufo_icon_size">-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <size android:height="1dp"/>-->
+<!--            <solid android:color="@color/black"/>-->
+<!--        </shape>-->
+<!--    </item>-->
+
+    <item
+        android:drawable="@drawable/list_divider"
+        android:left="@dimen/ufo_icon_size"/>
+
+</layer-list>

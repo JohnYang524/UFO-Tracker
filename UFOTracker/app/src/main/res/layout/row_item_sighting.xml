@@ -1,44 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<!--<com.google.android.material.card.MaterialCardView-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    style="@style/Widget.MaterialComponents.CardView"-->
+<!--    android:backgroundTint="@color/list_bg"-->
+<!--    android:minHeight="72dp">-->
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/Widget.MaterialComponents.CardView"
-    android:backgroundTint="@color/cardview_light_background"
-    android:minHeight="72dp">
+    android:backgroundTint="@color/list_bg"
+    android:minHeight="72dp"
+    android:padding="8dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="72dp"
-        android:padding="8dp">
+    <ImageView
+        android:id="@+id/iv_sighting_img"
+        android:layout_width="@dimen/ufo_icon_size"
+        android:layout_height="@dimen/ufo_icon_size"
+        android:paddingLeft="8dp"
+        android:paddingRight="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_ufo_small"
+        app:tint="@color/ufo_green" />
 
-        <TextView
-            android:id="@+id/tv_sighting_date"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_sighting_speed"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:alpha="0.6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_sighting_date" />
+    <TextView
+        android:id="@+id/tv_sighting_date"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:text="Test Date Here"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/iv_sighting_img"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_sighting_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:alpha="0.6"
+        android:text="14 knots"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/iv_sighting_img"
+        app:layout_constraintTop_toBottomOf="@id/tv_sighting_date" />
 
-</com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:id="@+id/tv_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:alpha="0.6"
+        android:text=" • "
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintRight_toLeftOf="@+id/tv_sighting_type"
+        app:layout_constraintStart_toEndOf="@+id/tv_sighting_speed"
+        app:layout_constraintTop_toBottomOf="@id/tv_sighting_date" />
+
+    <TextView
+        android:id="@+id/tv_sighting_type"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:alpha="0.6"
+        android:text="Meterious Type"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_dot"
+        app:layout_constraintTop_toBottomOf="@id/tv_sighting_date" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="3dp"
+        android:backgroundTint="@color/ufo_green"
+        android:text="Remove"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
