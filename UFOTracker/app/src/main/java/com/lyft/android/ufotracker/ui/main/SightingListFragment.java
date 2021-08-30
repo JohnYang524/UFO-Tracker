@@ -26,11 +26,11 @@ import java.util.List;
 public class SightingListFragment extends Fragment {
 
     private static final boolean mIsDebuggable = true;
-    private static final String  TAG           = PageViewModel.class.getName();
+    private static final String  TAG           = SightlingListViewModel.class.getName();
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private PageViewModel pageViewModel;
+    private SightlingListViewModel mViewModel;
     private FragmentMainBinding binding;
     private SightingListAdapter listAdapter;
 
@@ -45,12 +45,12 @@ public class SightingListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pageViewModel = new ViewModelProvider(this).get(PageViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(SightlingListViewModel.class);
         int index = Sighting.SightingCategory.STRANGE_FLYERS.tabIndex; // default tab
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        pageViewModel.setTabIndex(index);
+        mViewModel.setTabIndex(index);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class SightingListFragment extends Fragment {
         binding = FragmentMainBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        pageViewModel.getFilteredSightings().observe(getViewLifecycleOwner(), new Observer<List<Sighting>>() {
+        mViewModel.getFilteredSightings().observe(getViewLifecycleOwner(), new Observer<List<Sighting>>() {
             @Override
             public void onChanged(List<Sighting> sightings) {
                 if (listAdapter == null)
@@ -108,7 +108,7 @@ public class SightingListFragment extends Fragment {
         @Override
         public void onItemRemoved(int position) {
             if (mIsDebuggable) Log.v(TAG, "onItemRemoved: " + position);
-            pageViewModel.removeSightingAt(position);
+            mViewModel.removeSightingAt(position);
         }
     };
 
@@ -118,7 +118,7 @@ public class SightingListFragment extends Fragment {
             ((MainActivity) getActivity()).attachListRefreshListener(new MainActivity.ListRefreshListener() {
                 @Override
                 public void onNewSightingAdded(Sighting sighting) {
-                    pageViewModel.onNewSightingAdded(sighting);
+                    mViewModel.onNewSightingAdded(sighting);
                 }
             });
         }

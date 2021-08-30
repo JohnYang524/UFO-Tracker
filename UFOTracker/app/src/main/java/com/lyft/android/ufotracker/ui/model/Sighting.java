@@ -2,6 +2,9 @@ package com.lyft.android.ufotracker.ui.model;
 
 import com.lyft.android.ufotracker.R;
 
+/*
+*  Sighting data model.
+* */
 public class Sighting {
     public enum SightingType {
         BLOB(SightingCategory.STRANGE_FLYERS, R.drawable.ic_blob),
