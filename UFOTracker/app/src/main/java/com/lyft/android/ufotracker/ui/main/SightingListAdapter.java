@@ -63,7 +63,7 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
 
         holder.dateTextView.setText(sighting.getDate());
         holder.speedTextView.setText(sighting.getSpeed());
-        holder.typeTextView.setText(sighting.getType().toString());
+        holder.typeTextView.setText(sighting.getType().toString().replace("_", " "));
         holder.sightingImage.setImageDrawable(mContext.getResources().getDrawable(sighting.getType().imageId));
         if (position == toBeRemovedPosition) { // Show remove button when clicked
             holder.removeButton.setVisibility(View.VISIBLE);
