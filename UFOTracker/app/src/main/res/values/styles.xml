@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Base textview theme. -->
+    <style name="TextViewTheme">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="MediumTextViewStyle" parent="TextViewTheme">
+        <item name="android:textSize">@dimen/medium_font_size</item>
+    </style>
+
+    <style name="SmallTextViewStyle" parent="TextViewTheme">
+        <item name="android:textSize">@dimen/small_font_size</item>
+    </style>
+
+</resources>
