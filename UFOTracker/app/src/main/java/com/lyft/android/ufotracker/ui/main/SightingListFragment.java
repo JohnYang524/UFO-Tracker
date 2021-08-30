@@ -64,6 +64,7 @@ public class SightingListFragment extends Fragment {
         mViewModel.getFilteredSightings().observe(getViewLifecycleOwner(), new Observer<List<Sighting>>() {
             @Override
             public void onChanged(List<Sighting> sightings) {
+                displayEmptyLayout(sightings == null || sightings.size() == 0);// show empty layout if no data
                 if (listAdapter == null)
                     initSightingList(sightings);
                 else {
@@ -121,6 +122,16 @@ public class SightingListFragment extends Fragment {
                     mViewModel.onNewSightingAdded(sighting);
                 }
             });
+        }
+    }
+
+    private void displayEmptyLayout(boolean isEmpty) {
+        if (isEmpty) {
+            binding.sightingList.setVisibility(View.GONE);
+            binding.emptyView.setVisibility(View.VISIBLE);
+        } else {
+            binding.sightingList.setVisibility(View.VISIBLE);
+            binding.emptyView.setVisibility(View.GONE);
         }
     }
 

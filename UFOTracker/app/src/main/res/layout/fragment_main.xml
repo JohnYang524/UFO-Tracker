@@ -19,4 +19,12 @@
         app:layout_constraintVertical_bias="0.0"
         android:background="@color/list_bg"/>
 
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/no_sighting_data_available" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

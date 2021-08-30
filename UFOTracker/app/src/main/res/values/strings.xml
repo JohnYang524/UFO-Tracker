@@ -5,4 +5,5 @@
     <string name="tab_name_2">MYSTERIOUS LIGHTS</string>
     <string name="dot">&#160;•&#160;</string>
     <string name="btn_remove">Remove</string>
+    <string name="no_sighting_data_available">No Sighting Data Available.</string>
 </resources>
