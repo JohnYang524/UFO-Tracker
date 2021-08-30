@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.lyft.android.ufotracker.ui.model.Sighting;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
     private List<Sighting> mSightings;
     private Context mContext;
     private ListItemClickListener mListener;
+    private int toBeRemovedPosition = -1;
 
     public interface ListItemClickListener {
         void onItemClicked(int position);
@@ -45,7 +48,7 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
 
         View sightingView = inflater.inflate(R.layout.row_item_sighting, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(sightingView);
+        ViewHolder viewHolder = new ViewHolder(sightingView, mListener);
         return viewHolder;
     }
 
@@ -54,15 +57,15 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
         // Get the data model based on position
         Sighting sighting = mSightings.get(position);
 
-        TextView nameTextView = holder.dateTextView;
-        TextView phoneTextView = holder.speedTextView;
-        TextView typeTextView = holder.typeTextView;
-        ImageView sightingImage = holder.sightingImage;
-
-        nameTextView.setText(sighting.getDate());
-        phoneTextView.setText(sighting.getSpeed());
-        typeTextView.setText(sighting.getType().toString());
-        sightingImage.setImageDrawable(mContext.getResources().getDrawable(sighting.getType().imageId));
+        holder.dateTextView.setText(sighting.getDate());
+        holder.speedTextView.setText(sighting.getSpeed());
+        holder.typeTextView.setText(sighting.getType().toString());
+        holder.sightingImage.setImageDrawable(mContext.getResources().getDrawable(sighting.getType().imageId));
+        if (position == toBeRemovedPosition) { // Show remove button when clicked
+            holder.removeButton.setVisibility(View.VISIBLE);
+        } else {
+            holder.removeButton.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -72,32 +75,62 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
 
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
         public TextView dateTextView;
         public TextView speedTextView;
         public TextView typeTextView;
         public ImageView sightingImage;
+        public Button removeButton;
+        private WeakReference<ListItemClickListener> listenerRef;// Use WeakReference to eliminate a potential memory leak.
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, ListItemClickListener listener) {
             super(itemView);
 
+            listenerRef = new WeakReference<>(listener);
             dateTextView = itemView.findViewById(R.id.tv_sighting_date);
             speedTextView = itemView.findViewById(R.id.tv_sighting_speed);
             typeTextView = itemView.findViewById(R.id.tv_sighting_type);
             sightingImage = itemView.findViewById(R.id.iv_sighting_img);
+            removeButton = itemView.findViewById(R.id.bt_remove);
 
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+            removeButton.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == removeButton.getId()) {
+//                Toast.makeText(v.getContext(), "Remove Button PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                toBeRemovedPosition = -1; // Reset flag
+                removeAt(getAdapterPosition());
+            } else {
+//                Toast.makeText(v.getContext(), "ROW PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                toggleRemoveButtonVisibility(getAdapterPosition());
+            }
+            listenerRef.get().onItemClicked(getAdapterPosition());
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            listenerRef.get().onLongClicked(getAdapterPosition());
+            return false;
         }
     }
-
-//    public void notifyDataChange(List<Contact> contacts) {
-//        mSightings.clear();
-//        mSightings.addAll(contacts);
-//        notifyDataSetChanged();
-//    }
 
     public void removeAt(int position) {
         mSightings.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, mSightings.size());
+    }
+
+    public void toggleRemoveButtonVisibility(int position) {
+        // Toggle Remove button visibility
+        if (position != toBeRemovedPosition) { // show button, and hide the other remove button
+            toBeRemovedPosition = position;
+        } else { // hide remove button at current position
+            toBeRemovedPosition = -1;
+        }
+        notifyDataSetChanged(); // update list
     }
 }
