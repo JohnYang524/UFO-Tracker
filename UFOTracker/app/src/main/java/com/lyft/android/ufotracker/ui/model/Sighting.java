@@ -17,8 +17,13 @@ public class Sighting {
     }
 
     public enum SightingCategory {
-        STRANGE_FLYERS,
-        MYSTERIOUS_LIGHTS
+        STRANGE_FLYERS(1),
+        MYSTERIOUS_LIGHTS(2);
+
+        public int tabIndex;
+        SightingCategory(int tabIndex) {
+            this.tabIndex = tabIndex;
+        }
     }
 
     String date;
