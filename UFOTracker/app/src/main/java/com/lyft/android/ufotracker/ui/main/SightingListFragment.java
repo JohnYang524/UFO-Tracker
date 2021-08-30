@@ -1,6 +1,7 @@
 package com.lyft.android.ufotracker.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,9 @@ import java.util.List;
  * A fragment displaying a list of sighting items.
  */
 public class SightingListFragment extends Fragment {
+
+    private static final boolean mIsDebuggable = true;
+    private static final String  TAG           = PageViewModel.class.getName();
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -56,14 +60,6 @@ public class SightingListFragment extends Fragment {
         binding = FragmentMainBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-//        final TextView textView = binding.sectionLabel;
-//        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
-
         pageViewModel.getFilteredSightings().observe(getViewLifecycleOwner(), new Observer<List<Sighting>>() {
             @Override
             public void onChanged(List<Sighting> sightings) {
@@ -82,7 +78,7 @@ public class SightingListFragment extends Fragment {
 
     private void initSightingList(List<Sighting> sightingsList) {
         // Create adapter passing in the contact data
-        listAdapter = new SightingListAdapter(sightingsList, getContext());
+        listAdapter = new SightingListAdapter(sightingsList, getContext(), clickListener);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         binding.sightingList.setLayoutManager(layoutManager);
         // Attach the adapter to the recyclerview to populate items
@@ -93,5 +89,18 @@ public class SightingListFragment extends Fragment {
         mDividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.list_divider_margin_left));
         binding.sightingList.addItemDecoration(mDividerItemDecoration);
     }
+
+    SightingListAdapter.ListItemClickListener clickListener = new SightingListAdapter.ListItemClickListener() {
+        @Override
+        public void onItemClicked(int position) {
+            if (mIsDebuggable)
+                Log.v(TAG, "onItemClicked: " + position);
+        }
+        @Override
+        public void onLongClicked(int position) {
+            if (mIsDebuggable)
+                Log.v(TAG, "onItemClicked: " + position);
+        }
+    };
 
 }

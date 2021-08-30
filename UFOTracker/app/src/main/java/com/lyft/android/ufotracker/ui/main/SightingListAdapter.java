@@ -22,12 +22,19 @@ import java.util.List;
 public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapter.ViewHolder> {
 
     private List<Sighting> mSightings;
-    private Context context;
+    private Context mContext;
+    private ListItemClickListener mListener;
 
-    public SightingListAdapter(List<Sighting> sightings, Context context) {
+    public interface ListItemClickListener {
+        void onItemClicked(int position);
+        void onLongClicked(int position);
+    }
+
+    public SightingListAdapter(List<Sighting> sightings, Context context, ListItemClickListener listener) {
         mSightings = new ArrayList<>();
         mSightings.addAll(sightings);
-        this.context = context;
+        this.mContext = context;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -55,7 +62,7 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
         nameTextView.setText(sighting.getDate());
         phoneTextView.setText(sighting.getSpeed());
         typeTextView.setText(sighting.getType().toString());
-        sightingImage.setImageDrawable(context.getResources().getDrawable(sighting.getType().imageId));
+        sightingImage.setImageDrawable(mContext.getResources().getDrawable(sighting.getType().imageId));
     }
 
     @Override
@@ -87,4 +94,10 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
 //        mSightings.addAll(contacts);
 //        notifyDataSetChanged();
 //    }
+
+    public void removeAt(int position) {
+        mSightings.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, mSightings.size());
+    }
 }
