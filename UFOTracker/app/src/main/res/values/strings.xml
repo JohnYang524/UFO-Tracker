@@ -3,4 +3,6 @@
     <string name="app_title">UFO Sightings</string>
     <string name="tab_name_1">STRANGE FLYERS</string>
     <string name="tab_name_2">MYSTERIOUS LIGHTS</string>
+    <string name="dot">&#160;•&#160;</string>
+    <string name="btn_remove">Remove</string>
 </resources>
