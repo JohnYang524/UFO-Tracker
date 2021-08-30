@@ -91,7 +91,16 @@ public class SightlingListViewModel extends ViewModel {
     public void removeSightingAt(int pos) {
         List<Sighting> sightingList = mSightingsList.getValue();
         if (sightingList.size() > pos) {
-            sightingList.remove(pos);
+            for (Sighting sighting : sightingList) { // Remove corresponding sighting from list
+                if (sighting.getType().category.tabIndex == mTabIndex.getValue()) {
+                    if (pos == 0) {
+                        sightingList.remove(sighting);
+                        break;
+                    } else {
+                        pos--;
+                    }
+                }
+            }
             refreshFilteredList();
         }
     }
