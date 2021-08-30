@@ -21,6 +21,9 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SightingListAdapter as RecyclerView adapter.
+ */
 public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapter.ViewHolder> {
 
     private List<Sighting> mSightings;

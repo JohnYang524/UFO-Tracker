@@ -13,14 +13,18 @@ import com.lyft.android.ufotracker.ui.model.Sighting;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SightlingListViewModel for keeping business logic and handling data updates.
+ */
 public class SightlingListViewModel extends ViewModel {
 
     private static final boolean mIsDebuggable = true;
     private static final String  TAG           = SightlingListViewModel.class.getName();
 
     MutableLiveData<List<Sighting>> mSightingsList; // The list that contains all sightings
+
     private MutableLiveData<Integer> mTabIndex = new MutableLiveData<>();
-    // The transformations aren't calculated unless an observer is observing the returned LiveData object.(Lazy calculation)
+    // The filter logic is not calculated unless an observer is observing the returned LiveData object.(Lazy calculation)
     private LiveData<List<Sighting>> filteredSightings = Transformations.map(mTabIndex, new Function<Integer, List<Sighting>>() {
         @Override
         public List<Sighting> apply(Integer input) {
@@ -70,24 +74,12 @@ public class SightlingListViewModel extends ViewModel {
         }
     }
 
-    private List<Sighting> createTestData() {
-        List<Sighting> testData = new ArrayList<>();
-        testData.add(new Sighting("January 25, 2020 @ 6:00 AM", Sighting.SightingType.LAMPSHADE, "14 knots"));
-        testData.add(new Sighting("January 22, 2020 @ 7:00 PM", Sighting.SightingType.BLOB, "3 knots"));
-        testData.add(new Sighting("January 12, 2020 @ 6:20 AM", Sighting.SightingType.BLOB, "2 knots"));
-        testData.add(new Sighting("January 13, 2020 @ 6:20 AM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "22 knots"));
-        testData.add(new Sighting("January 25, 2020 @ 11:00 PM", Sighting.SightingType.LAMPSHADE, "14 knots"));
-        testData.add(new Sighting("January 25, 2020 @ 10:00 PM", Sighting.SightingType.BLOB, "3 knots"));
-        testData.add(new Sighting("January 14, 2020 @ 11:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "24 knots"));
-        testData.add(new Sighting("January 15, 2020 @ 10:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "23 knots"));
-        return testData;
-    }
-
     // filteredSightings is mapped with mTabIndex
     public void refreshFilteredList() {
         mTabIndex.setValue(mTabIndex.getValue());
     }
 
+    // Remove the sighting object at corresponding index of current category list.
     public void removeSightingAt(int pos) {
         List<Sighting> sightingList = mSightingsList.getValue();
         if (sightingList.size() > pos) {
@@ -103,5 +95,18 @@ public class SightlingListViewModel extends ViewModel {
             }
             refreshFilteredList();
         }
+    }
+
+    private List<Sighting> createTestData() {
+        List<Sighting> testData = new ArrayList<>();
+        testData.add(new Sighting("January 25, 2020 @ 6:00 AM", Sighting.SightingType.LAMPSHADE, "14 knots"));
+        testData.add(new Sighting("January 22, 2020 @ 7:00 PM", Sighting.SightingType.BLOB, "3 knots"));
+        testData.add(new Sighting("January 12, 2020 @ 6:20 AM", Sighting.SightingType.BLOB, "2 knots"));
+        testData.add(new Sighting("January 13, 2020 @ 6:20 AM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "22 knots"));
+        testData.add(new Sighting("January 25, 2020 @ 11:00 PM", Sighting.SightingType.LAMPSHADE, "14 knots"));
+        testData.add(new Sighting("January 25, 2020 @ 10:00 PM", Sighting.SightingType.BLOB, "3 knots"));
+        testData.add(new Sighting("January 14, 2020 @ 11:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "24 knots"));
+        testData.add(new Sighting("January 15, 2020 @ 10:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "23 knots"));
+        return testData;
     }
 }

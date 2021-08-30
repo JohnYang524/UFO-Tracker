@@ -21,7 +21,7 @@ import com.lyft.android.ufotracker.ui.model.Sighting;
 import java.util.List;
 
 /**
- * A fragment displaying a list of sighting items.
+ * A fragment displaying a list of Sighting items.
  */
 public class SightingListFragment extends Fragment {
 
