@@ -84,11 +84,10 @@ public class SightingListFragment extends Fragment {
     }
 
     private void initSightingList(List<Sighting> sightingsList) {
-        // Create adapter passing in the contact data
+
         listAdapter = new SightingListAdapter(sightingsList, getContext(), clickListener);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         binding.sightingList.setLayoutManager(layoutManager);
-        // Attach the adapter to the recyclerview to populate items
         binding.sightingList.setAdapter(listAdapter);
         // Divider
         DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(getActivity(),
@@ -100,13 +99,16 @@ public class SightingListFragment extends Fragment {
     SightingListAdapter.ListItemClickListener clickListener = new SightingListAdapter.ListItemClickListener() {
         @Override
         public void onItemClicked(int position) {
-            if (mIsDebuggable)
-                Log.v(TAG, "onItemClicked: " + position);
+            if (mIsDebuggable) Log.v(TAG, "onItemClicked: " + position);
         }
         @Override
         public void onLongClicked(int position) {
-            if (mIsDebuggable)
-                Log.v(TAG, "onItemClicked: " + position);
+            if (mIsDebuggable) Log.v(TAG, "onItemClicked: " + position);
+        }
+        @Override
+        public void onItemRemoved(int position) {
+            if (mIsDebuggable) Log.v(TAG, "onItemRemoved: " + position);
+            pageViewModel.removeSightingAt(position);
         }
     };
 

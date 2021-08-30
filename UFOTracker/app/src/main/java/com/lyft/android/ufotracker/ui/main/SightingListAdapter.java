@@ -31,6 +31,7 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
     public interface ListItemClickListener {
         void onItemClicked(int position);
         void onLongClicked(int position);
+        void onItemRemoved(int position);
     }
 
     public SightingListAdapter(List<Sighting> sightings, Context context, ListItemClickListener listener) {
@@ -101,14 +102,13 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
         @Override
         public void onClick(View v) {
             if (v.getId() == removeButton.getId()) {
-//                Toast.makeText(v.getContext(), "Remove Button PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
                 toBeRemovedPosition = -1; // Reset flag
-                removeAt(getAdapterPosition());
+//                removeAt(getAdapterPosition());
+                listenerRef.get().onItemRemoved(getAdapterPosition());
             } else {
-//                Toast.makeText(v.getContext(), "ROW PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
                 toggleRemoveButtonVisibility(getAdapterPosition());
+                listenerRef.get().onItemClicked(getAdapterPosition());
             }
-            listenerRef.get().onItemClicked(getAdapterPosition());
         }
 
         @Override
@@ -118,11 +118,11 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
         }
     }
 
-    public void removeAt(int position) {
+   /* public void removeAt(int position) {
         mSightings.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, mSightings.size());
-    }
+    }*/
 
     public void toggleRemoveButtonVisibility(int position) {
         // Toggle Remove button visibility

@@ -88,4 +88,12 @@ public class PageViewModel extends ViewModel {
     public void refreshFilteredList() {
         mTabIndex.setValue(mTabIndex.getValue());
     }
+
+    public void removeSightingAt(int pos) {
+        List<Sighting> sightingList = mSightingsList.getValue();
+        if (sightingList.size() > pos) {
+            sightingList.remove(pos);
+            refreshFilteredList();
+        }
+    }
 }
