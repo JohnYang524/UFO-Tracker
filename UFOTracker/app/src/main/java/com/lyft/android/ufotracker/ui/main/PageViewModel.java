@@ -40,14 +40,17 @@ public class PageViewModel extends ViewModel {
     });
 
     public PageViewModel() {
-        mSightingsList = new MutableLiveData<>();
-        // call Rest API in init method
-        init();
+//        initSightingsList();
+        populateSightingsList();
     }
 
-    private void init(){
-        // Call to get data here. For testing purpose, the list is populated with sample data.
-        mSightingsList.setValue(createTestData());
+    public MutableLiveData<List<Sighting>> populateSightingsList() {
+        if (mSightingsList == null) {
+            mSightingsList = new MutableLiveData<>();
+            // Call to get data here. For testing purpose, the list is populated with sample data.
+            mSightingsList.setValue(createTestData());
+        }
+        return mSightingsList;
     }
 
     public void setTabIndex(int index) {
@@ -58,8 +61,14 @@ public class PageViewModel extends ViewModel {
         return filteredSightings;
     }
 
-    public MutableLiveData<List<Sighting>> getUserMutableLiveData() {
-        return mSightingsList;
+    public void onNewSightingAdded(Sighting sighting) {
+        // For testing purpose, add only the data that matches current displaying category.
+        if (sighting.getType().category.tabIndex == mTabIndex.getValue()) {
+            List<Sighting> dataList = mSightingsList.getValue();
+            dataList.add(0, sighting);
+            mSightingsList.setValue(dataList);
+            refreshFilteredList();
+        }
     }
 
     private List<Sighting> createTestData() {
@@ -73,5 +82,10 @@ public class PageViewModel extends ViewModel {
         testData.add(new Sighting("January 14, 2020 @ 11:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "24 knots"));
         testData.add(new Sighting("January 15, 2020 @ 10:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "23 knots"));
         return testData;
+    }
+
+    // filteredSightings is mapped with mTabIndex
+    public void refreshFilteredList() {
+        mTabIndex.setValue(mTabIndex.getValue());
     }
 }

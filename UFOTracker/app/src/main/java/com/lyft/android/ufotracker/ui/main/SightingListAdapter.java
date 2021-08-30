@@ -133,4 +133,10 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
         }
         notifyDataSetChanged(); // update list
     }
+
+    public void notifyDataChange(List<Sighting> sightings) {
+        mSightings.clear();
+        mSightings.addAll(sightings);
+        notifyDataSetChanged();
+    }
 }

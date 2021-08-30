@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.lyft.android.ufotracker.MainActivity;
 import com.lyft.android.ufotracker.R;
 import com.lyft.android.ufotracker.databinding.FragmentMainBinding;
 import com.lyft.android.ufotracker.ui.model.Sighting;
@@ -63,9 +64,15 @@ public class SightingListFragment extends Fragment {
         pageViewModel.getFilteredSightings().observe(getViewLifecycleOwner(), new Observer<List<Sighting>>() {
             @Override
             public void onChanged(List<Sighting> sightings) {
-                initSightingList(sightings);
+                if (listAdapter == null)
+                    initSightingList(sightings);
+                else {
+                    listAdapter.notifyDataChange(sightings);
+                }
             }
         });
+
+        attachListRefreshListener();
 
         return root;
     }
@@ -102,5 +109,17 @@ public class SightingListFragment extends Fragment {
                 Log.v(TAG, "onItemClicked: " + position);
         }
     };
+
+    // Attach a list update listener
+    private void attachListRefreshListener() {
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).attachListRefreshListener(new MainActivity.ListRefreshListener() {
+                @Override
+                public void onNewSightingAdded(Sighting sighting) {
+                    pageViewModel.onNewSightingAdded(sighting);
+                }
+            });
+        }
+    }
 
 }
