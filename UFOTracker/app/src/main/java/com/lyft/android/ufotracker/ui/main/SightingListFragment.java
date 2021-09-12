@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.lyft.android.ufotracker.MainActivity;
 import com.lyft.android.ufotracker.R;
 import com.lyft.android.ufotracker.databinding.FragmentMainBinding;
+import com.lyft.android.ufotracker.db.SightingDatabase;
 import com.lyft.android.ufotracker.ui.model.Sighting;
 
 import java.util.List;
@@ -70,6 +71,14 @@ public class SightingListFragment extends Fragment {
                 else {
                     listAdapter.notifyDataChange(sightings);
                 }
+            }
+        });
+
+        SightingDatabase appDb = SightingDatabase.getInstance(getActivity());
+        appDb.sightingDAO().getAll().observe(getViewLifecycleOwner(), new Observer<List<Sighting>>() {
+            @Override
+            public void onChanged(List<Sighting> sightings) {
+                mViewModel.onSightingListUpdated(sightings);
             }
         });
 

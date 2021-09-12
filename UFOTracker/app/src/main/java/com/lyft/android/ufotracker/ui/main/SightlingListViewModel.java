@@ -30,7 +30,7 @@ public class SightlingListViewModel extends ViewModel {
         public List<Sighting> apply(Integer input) {
             if (mIsDebuggable)
                 Log.v(TAG, "Tab selected: " + input + ". Updating filtered list.");
-            if (mSightingsList == null || mSightingsList.getValue().size() == 0)
+            if (mSightingsList.getValue() == null || mSightingsList.getValue().size() == 0)
                 return mSightingsList.getValue();
             // filter list data based on tab index
             List<Sighting> filteredList = new ArrayList<>();
@@ -75,7 +75,7 @@ public class SightlingListViewModel extends ViewModel {
     }
 
     // filteredSightings is mapped with mTabIndex
-    public void refreshFilteredList() {
+    private void refreshFilteredList() {
         mTabIndex.setValue(mTabIndex.getValue());
     }
 
@@ -95,6 +95,12 @@ public class SightlingListViewModel extends ViewModel {
             }
             refreshFilteredList();
         }
+    }
+
+    // When list of sighting is updated
+    public void onSightingListUpdated(List<Sighting> sightings) {
+        mSightingsList.setValue(sightings);
+        refreshFilteredList();
     }
 
     private List<Sighting> createTestData() {
