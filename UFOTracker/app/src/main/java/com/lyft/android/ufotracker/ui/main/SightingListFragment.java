@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -101,6 +102,8 @@ public class SightingListFragment extends Fragment {
         @Override
         public void onItemClicked(int position) {
             if (mIsDebuggable) Log.v(TAG, "onItemClicked: " + position);
+//            NavHostFragment.findNavController(SightingListFragment.this)
+//                    .navigate(R.id.action_list_to_2nd);
         }
         @Override
         public void onLongClicked(int position) {
