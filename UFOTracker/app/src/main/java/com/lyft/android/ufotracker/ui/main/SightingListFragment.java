@@ -10,13 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.lyft.android.ufotracker.MainActivity;
 import com.lyft.android.ufotracker.R;
-import com.lyft.android.ufotracker.databinding.FragmentMainBinding;
 import com.lyft.android.ufotracker.db.SightingDatabase;
+import com.lyft.android.ufotracker.databinding.FragmentListBinding;
 import com.lyft.android.ufotracker.ui.model.Sighting;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class SightingListFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private SightlingListViewModel mViewModel;
-    private FragmentMainBinding binding;
+    private FragmentListBinding binding;
     private SightingListAdapter listAdapter;
 
     public static SightingListFragment newInstance(int index) {
@@ -59,7 +60,7 @@ public class SightingListFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        binding = FragmentMainBinding.inflate(inflater, container, false);
+        binding = FragmentListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         mViewModel.getFilteredSightings().observe(getViewLifecycleOwner(), new Observer<List<Sighting>>() {
@@ -110,6 +111,8 @@ public class SightingListFragment extends Fragment {
         @Override
         public void onItemClicked(int position) {
             if (mIsDebuggable) Log.v(TAG, "onItemClicked: " + position);
+//            NavHostFragment.findNavController(SightingListFragment.this)
+//                    .navigate(R.id.action_list_to_2nd);
         }
         @Override
         public void onLongClicked(int position) {
