@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.main;
+package com.lyft.android.ufotracker.ui.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
