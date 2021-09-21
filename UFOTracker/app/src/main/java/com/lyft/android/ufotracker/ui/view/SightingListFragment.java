@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.lyft.android.ufotracker.MainActivity;
 import com.lyft.android.ufotracker.R;
 import com.lyft.android.ufotracker.databinding.FragmentListBinding;
+import com.lyft.android.ufotracker.ui.helper.SightingListAdapter;
 import com.lyft.android.ufotracker.ui.model.Sighting;
 import com.lyft.android.ufotracker.ui.viewmodel.SightlingListViewModel;
 
