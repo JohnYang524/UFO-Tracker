@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
  */
 public class Utils {
     public static String PREF_KEY_LAST_SYNC_TIME = "PREF_KEY_LAST_SYNC_TIME";
+    public static String PREF_KEY_NEXT_DB_ID = "PREF_KEY_NEXT_DB_ID";
 
     /***
      * Get room DB last sync time as millisecond
@@ -75,14 +76,14 @@ public class Utils {
     /***
      * For testing purpose only. Simulating auto-incrementing ID.
      * */
-//    public static String getNextID(Context context) {
-//        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-//        String current = pref.getString(PREF_KEY_NEXT_DB_ID, "110");
-//        // increment by 1
-//        String next = String.valueOf(Integer.parseInt(current) + 1);
-//        SharedPreferences.Editor editor = pref.edit();
-//        editor.putString(PREF_KEY_NEXT_DB_ID, next);
-//        editor.apply();
-//        return next;
-//    }
+    public static String getNextID(Context context) {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+        String current = pref.getString(PREF_KEY_NEXT_DB_ID, "100");
+        // increment by 1
+        String next = String.valueOf(Integer.parseInt(current) + 1);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(PREF_KEY_NEXT_DB_ID, next);
+        editor.apply();
+        return next;
+    }
 }

@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         for (ListRefreshListener listener : listRefreshListeners) {// Notify all listeners
             if (listener != null) {
                 listener.onNewSightingAdded(currentTab == 0 ?
-                        new Sighting("March 25, 2021 @ 9:00 PM", Sighting.SightingType.LAMPSHADE, "19 knots") :
-                        new Sighting("March 22, 2021 @ 11:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "5 knots"));
+                        new Sighting("0","March 25, 2021 @ 9:00 PM", Sighting.SightingType.LAMPSHADE, "19 knots") :
+                        new Sighting("1","March 22, 2021 @ 11:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "5 knots"));
             }
         }
     }

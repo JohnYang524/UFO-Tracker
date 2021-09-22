@@ -29,7 +29,7 @@ import java.util.List;
 public class SightingListFragment extends Fragment {
 
     private static final boolean mIsDebuggable = true;
-    private static final String  TAG           = SightlingListViewModel.class.getName();
+    private static final String  TAG           = SightingListFragment.class.getName();
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -67,12 +67,8 @@ public class SightingListFragment extends Fragment {
         mViewModel.getFilteredSightings().observe(getViewLifecycleOwner(), new Observer<List<Sighting>>() {
             @Override
             public void onChanged(List<Sighting> sightings) {
-                displayEmptyLayout(sightings == null || sightings.size() == 0);// show empty layout if no data
-                if (listAdapter == null)
-                    initSightingList(sightings);
-                else {
-                    listAdapter.notifyDataChange(sightings);
-                }
+                if (mIsDebuggable) Log.v(TAG, "Filtered list updated. Current size: ");
+
             }
         });
 
@@ -81,6 +77,16 @@ public class SightingListFragment extends Fragment {
             @Override
             public void onChanged(List<Sighting> sightings) {
                 mViewModel.onSightingListUpdated(sightings);
+                List<Sighting> filteredList = mViewModel.filterList(sightings);
+                if (filteredList == null || filteredList.size() == 0) {
+                    displayEmptyLayout(true);// show empty layout if no data
+                    return;
+                }
+                if (listAdapter == null) {
+                    initSightingList(filteredList);
+                } else {
+                    listAdapter.notifyDataChange(filteredList);
+                }
             }
         });
 

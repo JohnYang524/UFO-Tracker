@@ -30,10 +30,10 @@ public interface SightingDAO {
 
 
     @Insert
-    void insertAll(Sighting... contacts);
+    void insertAll(Sighting... sightings);
 
     @Delete
-    void delete(Sighting contact);
+    void delete(Sighting sighting);
 
     @Query("DELETE FROM sighting")
     void nukeContactTable();

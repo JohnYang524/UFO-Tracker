@@ -23,7 +23,8 @@ public class Sighting {
     @ColumnInfo(name = "speed")
     public String speed;
 
-    public Sighting(String date, SightingType type, String speed) {
+    public Sighting(String id, String date, SightingType type, String speed) {
+        this.id = id;
         this.date = date;
         this.type = type;
         this.speed = speed;

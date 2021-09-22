@@ -1,13 +1,13 @@
 package com.lyft.android.ufotracker.ui.viewmodel;
 
-import android.content.Context;
+import android.app.Application;
 import android.util.Log;
 
 import androidx.arch.core.util.Function;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
-import androidx.lifecycle.ViewModel;
 
 import com.lyft.android.ufotracker.ui.helper.SightingRepo;
 import com.lyft.android.ufotracker.ui.model.Sighting;
@@ -18,13 +18,13 @@ import java.util.List;
 /**
  * SightlingListViewModel for keeping business logic and handling data updates.
  */
-public class SightlingListViewModel extends ViewModel {
+public class SightlingListViewModel extends AndroidViewModel {
 
     private static final boolean mIsDebuggable = true;
     private static final String  TAG           = SightlingListViewModel.class.getName();
 
     private SightingRepo mRepo;
-    private MutableLiveData<List<Sighting>> mSightingsList; // The list that contains all sightings
+    private LiveData<List<Sighting>> mSightingsList; // The list that contains all sightings
 
     private MutableLiveData<Integer> mTabIndex = new MutableLiveData<>();
     // The filter logic is not calculated unless an observer is observing the returned LiveData object.(Lazy calculation)
@@ -42,23 +42,26 @@ public class SightlingListViewModel extends ViewModel {
                     filteredList.add(sighting);
                 }
             }
+            Log.v(TAG, "filteredList size " + filteredList.size());
             return filteredList;
         }
     });
 
-    public SightlingListViewModel(Context context) {
-        mRepo = new SightingRepo(context);
-//        mSightingsList = mRepo.getAllSightings();
+    public SightlingListViewModel(Application application) {
+        super(application);
+        mRepo = new SightingRepo(application);
+        mSightingsList = mRepo.getAllSightings();
         populateSightingsList();
     }
 
-    public MutableLiveData<List<Sighting>> populateSightingsList() {
-        if (mSightingsList == null) {
-            mSightingsList = new MutableLiveData<>();
-            // Call to get data here. For testing purpose, the list is populated with sample data.
-            mSightingsList.setValue(createTestData());
-        }
-        return mSightingsList;
+    public void populateSightingsList() {
+//        if (mSightingsList == null) {
+//            mSightingsList = new MutableLiveData<>();
+//            // Call to get data here. For testing purpose, the list is populated with sample data.
+//            mSightingsList.setValue(createTestData());
+//        }
+//        return mSightingsList;
+        mRepo.populateList();
     }
 
     public void setTabIndex(int index) {
@@ -72,9 +75,10 @@ public class SightlingListViewModel extends ViewModel {
     public void onNewSightingAdded(Sighting sighting) {
         // For testing purpose, add only the data that matches current displaying category.
         if (sighting.getType().category.tabIndex == mTabIndex.getValue()) {
-            List<Sighting> dataList = mSightingsList.getValue();
-            dataList.add(0, sighting);
-            mSightingsList.setValue(dataList);
+//            List<Sighting> dataList = mSightingsList.getValue();
+//            dataList.add(0, sighting);
+            mRepo.insert(new Sighting[]{sighting});
+//            mSightingsList.setValue(dataList);
             refreshFilteredList();
         }
     }
@@ -104,20 +108,19 @@ public class SightlingListViewModel extends ViewModel {
 
     // When list of sighting is updated
     public void onSightingListUpdated(List<Sighting> sightings) {
-        mSightingsList.setValue(sightings);
         refreshFilteredList();
     }
 
-    private List<Sighting> createTestData() {
-        List<Sighting> testData = new ArrayList<>();
-        testData.add(new Sighting("January 25, 2020 @ 6:00 AM", Sighting.SightingType.LAMPSHADE, "14 knots"));
-        testData.add(new Sighting("January 22, 2020 @ 7:00 PM", Sighting.SightingType.BLOB, "3 knots"));
-        testData.add(new Sighting("January 12, 2020 @ 6:20 AM", Sighting.SightingType.BLOB, "2 knots"));
-        testData.add(new Sighting("January 13, 2020 @ 6:20 AM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "22 knots"));
-        testData.add(new Sighting("January 25, 2020 @ 11:00 PM", Sighting.SightingType.LAMPSHADE, "14 knots"));
-        testData.add(new Sighting("January 25, 2020 @ 10:00 PM", Sighting.SightingType.BLOB, "3 knots"));
-        testData.add(new Sighting("January 14, 2020 @ 11:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "24 knots"));
-        testData.add(new Sighting("January 15, 2020 @ 10:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "23 knots"));
-        return testData;
+    public List<Sighting> filterList(List<Sighting> sightings) {
+        // filter list data based on tab index
+        List<Sighting> filteredList = new ArrayList<>();
+        for (Sighting sighting : sightings) {
+            if (sighting.getType().category.tabIndex == mTabIndex.getValue()) {
+                filteredList.add(sighting);
+            }
+        }
+        if (mIsDebuggable)  Log.v(TAG, "filteredList size " + filteredList.size());
+        return filteredList;
     }
+
 }
