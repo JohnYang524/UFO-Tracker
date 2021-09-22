@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.main;
+package com.lyft.android.ufotracker.ui.viewmodel;
 
 import android.util.Log;
 

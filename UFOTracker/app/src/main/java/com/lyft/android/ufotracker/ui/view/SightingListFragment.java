@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.main;
+package com.lyft.android.ufotracker.ui.view;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -18,7 +17,9 @@ import com.lyft.android.ufotracker.MainActivity;
 import com.lyft.android.ufotracker.R;
 import com.lyft.android.ufotracker.db.SightingDatabase;
 import com.lyft.android.ufotracker.databinding.FragmentListBinding;
+import com.lyft.android.ufotracker.ui.helper.SightingListAdapter;
 import com.lyft.android.ufotracker.ui.model.Sighting;
+import com.lyft.android.ufotracker.ui.viewmodel.SightlingListViewModel;
 
 import java.util.List;
 
