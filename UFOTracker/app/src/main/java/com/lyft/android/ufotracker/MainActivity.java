@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lyft.android.ufotracker.databinding.ActivityMainBinding;
+import com.lyft.android.ufotracker.ui.helper.Utils;
 import com.lyft.android.ufotracker.ui.model.Sighting;
 
 import java.util.ArrayList;
@@ -43,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         for (ListRefreshListener listener : listRefreshListeners) {// Notify all listeners
             if (listener != null) {
                 listener.onNewSightingAdded(currentTab == 0 ?
-                        new Sighting("0","March 25, 2021 @ 9:00 PM", Sighting.SightingType.LAMPSHADE, "19 knots") :
-                        new Sighting("1","March 22, 2021 @ 11:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "5 knots"));
+                        new Sighting(Utils.getNextID(this),"March 25, 2021 @ 9:00 PM", Sighting.SightingType.LAMPSHADE, "19 knots") :
+                        new Sighting(Utils.getNextID(this),"March 22, 2021 @ 11:00 PM", Sighting.SightingType.MYSTERIOUS_LIGHTS, "5 knots"));
             }
         }
     }

@@ -126,9 +126,9 @@ public class SightingListFragment extends Fragment {
             if (mIsDebuggable) Log.v(TAG, "onItemClicked: " + position);
         }
         @Override
-        public void onItemRemoved(int position) {
-            if (mIsDebuggable) Log.v(TAG, "onItemRemoved: " + position);
-            mViewModel.removeSightingAt(position);
+        public void onItemRemoved(Sighting sighting) {
+//            if (mIsDebuggable) Log.v(TAG, "onItemRemoved: " + position);
+            mViewModel.removeSightingAt(sighting);
         }
     };
 

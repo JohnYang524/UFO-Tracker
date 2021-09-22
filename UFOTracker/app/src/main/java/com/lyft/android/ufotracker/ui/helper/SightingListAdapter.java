@@ -34,7 +34,7 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
     public interface ListItemClickListener {
         void onItemClicked(int position);
         void onLongClicked(int position);
-        void onItemRemoved(int position);
+        void onItemRemoved(Sighting sighting);
     }
 
     public SightingListAdapter(List<Sighting> sightings, Context context, ListItemClickListener listener) {
@@ -107,7 +107,7 @@ public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapte
             if (v.getId() == removeButton.getId()) {
                 toBeRemovedPosition = -1; // Reset flag
 //                removeAt(getAdapterPosition());
-                listenerRef.get().onItemRemoved(getAdapterPosition());
+                listenerRef.get().onItemRemoved(mSightings.get(getAdapterPosition()));
             } else {
                 toggleRemoveButtonVisibility(getAdapterPosition());
                 listenerRef.get().onItemClicked(getAdapterPosition());
