@@ -1,5 +1,6 @@
 package com.lyft.android.ufotracker.ui.viewmodel;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.arch.core.util.Function;
@@ -8,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.lyft.android.ufotracker.ui.helper.SightingRepo;
 import com.lyft.android.ufotracker.ui.model.Sighting;
 
 import java.util.ArrayList;
@@ -21,7 +23,8 @@ public class SightlingListViewModel extends ViewModel {
     private static final boolean mIsDebuggable = true;
     private static final String  TAG           = SightlingListViewModel.class.getName();
 
-    MutableLiveData<List<Sighting>> mSightingsList; // The list that contains all sightings
+    private SightingRepo mRepo;
+    private MutableLiveData<List<Sighting>> mSightingsList; // The list that contains all sightings
 
     private MutableLiveData<Integer> mTabIndex = new MutableLiveData<>();
     // The filter logic is not calculated unless an observer is observing the returned LiveData object.(Lazy calculation)
@@ -43,7 +46,9 @@ public class SightlingListViewModel extends ViewModel {
         }
     });
 
-    public SightlingListViewModel() {
+    public SightlingListViewModel(Context context) {
+        mRepo = new SightingRepo(context);
+//        mSightingsList = mRepo.getAllSightings();
         populateSightingsList();
     }
 
