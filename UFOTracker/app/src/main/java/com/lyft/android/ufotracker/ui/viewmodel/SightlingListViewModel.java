@@ -85,7 +85,7 @@ public class SightlingListViewModel extends AndroidViewModel {
 
     // filteredSightings is mapped with mTabIndex
     private void refreshFilteredList() {
-        mTabIndex.setValue(mTabIndex.getValue());
+//        mTabIndex.setValue(mTabIndex.getValue());
     }
 
     // Remove the sighting object at corresponding index of current category list.
