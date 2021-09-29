@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.helper;
+package com.demo.android.ufotracker.ui.helper;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.lyft.android.ufotracker.R;
-import com.lyft.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.R;
+import com.demo.android.ufotracker.ui.model.Sighting;
 
 import org.jetbrains.annotations.NotNull;
 

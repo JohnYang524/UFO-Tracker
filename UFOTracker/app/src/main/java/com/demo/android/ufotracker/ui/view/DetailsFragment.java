@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.view;
+package com.demo.android.ufotracker.ui.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.lyft.android.ufotracker.databinding.FragmentDetailBinding;
+import com.demo.android.ufotracker.databinding.FragmentDetailBinding;
 
 import org.jetbrains.annotations.NotNull;
 

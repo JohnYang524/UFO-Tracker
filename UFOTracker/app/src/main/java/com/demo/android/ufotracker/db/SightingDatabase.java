@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.db;
+package com.demo.android.ufotracker.db;
 
 import android.content.Context;
 
@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.lyft.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.ui.model.Sighting;
 
 /**
 *  Room database for saving Sightings.

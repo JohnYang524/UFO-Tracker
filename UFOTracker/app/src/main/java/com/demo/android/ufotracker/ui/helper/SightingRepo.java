@@ -1,16 +1,14 @@
 
-package com.lyft.android.ufotracker.ui.helper;
+package com.demo.android.ufotracker.ui.helper;
 
 
 import android.app.Application;
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.lifecycle.LiveData;
 
-import com.lyft.android.ufotracker.db.SightingDAO;
-import com.lyft.android.ufotracker.db.SightingDatabase;
-import com.lyft.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.db.SightingDAO;
+import com.demo.android.ufotracker.db.SightingDatabase;
+import com.demo.android.ufotracker.ui.model.Sighting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +32,7 @@ public class SightingRepo {
     public void populateList() {
         if (Utils.getLastSyncTime(application).equals("0")) { // first time
             insert(createTestData());
+            Utils.saveLastSyncTime(application, "1");
         }
     }
 

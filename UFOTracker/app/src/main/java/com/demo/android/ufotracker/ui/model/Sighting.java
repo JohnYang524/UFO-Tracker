@@ -1,11 +1,11 @@
-package com.lyft.android.ufotracker.ui.model;
+package com.demo.android.ufotracker.ui.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.lyft.android.ufotracker.R;
+import com.demo.android.ufotracker.R;
 
 /*
 *  Sighting data model.

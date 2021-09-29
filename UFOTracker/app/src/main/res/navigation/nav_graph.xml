@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MainFragment"
-        android:name="com.lyft.android.ufotracker.ui.view.MainFragment"
+        android:name="com.demo.android.ufotracker.ui.view.MainFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_main">
 
@@ -17,7 +17,7 @@
     </fragment>
 <!--    <fragment-->
 <!--        android:id="@+id/SecondFragment"-->
-<!--        android:name="com.lyft.android.ufotracker.ui.main.SecondFragment"-->
+<!--        android:name="com.demo.android.ufotracker.ui.main.SecondFragment"-->
 <!--        android:label="Second Fragment"-->
 <!--        tools:layout="@layout/fragment_second">-->
 

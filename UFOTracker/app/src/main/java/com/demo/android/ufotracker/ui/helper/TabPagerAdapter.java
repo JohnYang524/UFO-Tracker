@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.helper;
+package com.demo.android.ufotracker.ui.helper;
 
 import android.content.Context;
 
@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.lyft.android.ufotracker.R;
-import com.lyft.android.ufotracker.ui.view.SightingListFragment;
+import com.demo.android.ufotracker.R;
+import com.demo.android.ufotracker.ui.view.SightingListFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

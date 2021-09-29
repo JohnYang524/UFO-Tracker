@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.viewmodel;
+package com.demo.android.ufotracker.ui.viewmodel;
 
 import android.app.Application;
 import android.util.Log;
@@ -9,8 +9,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.lyft.android.ufotracker.ui.helper.SightingRepo;
-import com.lyft.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.ui.helper.SightingRepo;
+import com.demo.android.ufotracker.ui.model.Sighting;
 
 import java.util.ArrayList;
 import java.util.List;

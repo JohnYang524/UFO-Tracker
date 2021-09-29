@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.helper;
+package com.demo.android.ufotracker.ui.helper;
 
 
 import android.content.Context;

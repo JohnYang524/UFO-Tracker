@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-        applicationId "com.lyft.android.ufotracker"
+        applicationId "com.demo.android.ufotracker"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1

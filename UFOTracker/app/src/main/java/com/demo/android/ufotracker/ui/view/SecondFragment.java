@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.view;
+package com.demo.android.ufotracker.ui.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.lyft.android.ufotracker.databinding.FragmentSecondBinding;
+import com.demo.android.ufotracker.databinding.FragmentSecondBinding;
 
 /**
  *  Fragment

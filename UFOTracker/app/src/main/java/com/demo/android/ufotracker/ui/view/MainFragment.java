@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.ui.view;
+package com.demo.android.ufotracker.ui.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,9 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.lyft.android.ufotracker.MainActivity;
-import com.lyft.android.ufotracker.databinding.FragmentMainBinding;
-import com.lyft.android.ufotracker.ui.helper.TabPagerAdapter;
+import com.demo.android.ufotracker.databinding.FragmentMainBinding;
+import com.demo.android.ufotracker.ui.helper.TabPagerAdapter;
 
 /**
  * Main fragment that holds a AppBarLayout and a TabLayout that is set up using a ViewPager.

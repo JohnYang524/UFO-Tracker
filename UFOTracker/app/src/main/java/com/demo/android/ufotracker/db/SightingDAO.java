@@ -1,4 +1,4 @@
-package com.lyft.android.ufotracker.db;
+package com.demo.android.ufotracker.db;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -6,7 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.lyft.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.ui.model.Sighting;
 
 import java.util.List;
 
