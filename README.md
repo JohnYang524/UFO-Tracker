@@ -22,7 +22,6 @@ Features Implemented:
     o	When an entry in the displayed list of items is selected, display a Remove button
     o	Tap on a list item repeatedly will toggle Remove button visibility
     o	When the remove button is clicked, the selected entry will be removed 
--	Layout implemented to match design spec.
 
  
 What I have done:
@@ -62,15 +61,5 @@ What I have done:
     o	Clicking on a list item will toggle visibility of a Remove button
     o	Clicking on Remove button will call back to onItemRemoved() function implemented by listener. 
     o	Fragment (listener) will then call remove method in ViewModel to remove corresponding data from the SightingList and trigger UI updates.
-
-Time Spent:
-
--	Effort Spent:
-    o	Github setup: 5min
-    o	Design: 15min
-    o	Create resources files and Implement UI components: 45 mins
-    o	Update UI to match design spec: 20min
-    o	Data update flow: 25min
-    o	Testing, debugging, and code cleaning up: 20min
-    o	Documentation: 15min
-
+- 	Room Database
+	
