@@ -45,14 +45,14 @@ public class MainFragment extends Fragment {
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
 
-        binding.ivAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { // Add hardcoded Sighting objects for testing
-                if (getActivity() instanceof MainActivity) {
-                    ((MainActivity)getActivity()).addTestSighting(currentTab);
-                }
-            }
-        });
+//        binding.ivAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) { // Add hardcoded Sighting objects for testing
+//                if (getActivity() instanceof MainActivity) {
+//                    ((MainActivity)getActivity()).addTestSighting(currentTab);
+//                }
+//            }
+//        });
         binding.tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
