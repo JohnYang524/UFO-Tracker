@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.demo.android.ufotracker.MainActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.demo.android.ufotracker.databinding.FragmentMainBinding;
 import com.demo.android.ufotracker.ui.helper.TabPagerAdapter;
@@ -44,14 +45,14 @@ public class MainFragment extends Fragment {
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
 
-//        binding.ivAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) { // Add hardcoded Sighting objects for testing
-//                if (getActivity() instanceof MainActivity) {
-//                    ((MainActivity)getActivity()).addTestSighting(currentTab);
-//                }
-//            }
-//        });
+        binding.ivAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { // Add hardcoded Sighting objects for testing
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity)getActivity()).addTestSighting(currentTab);
+                }
+            }
+        });
         binding.tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
