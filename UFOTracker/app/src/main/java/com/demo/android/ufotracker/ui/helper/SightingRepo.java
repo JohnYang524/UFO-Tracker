@@ -3,11 +3,14 @@ package com.demo.android.ufotracker.ui.helper;
 
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import com.demo.android.ufotracker.db.SightingDAO;
 import com.demo.android.ufotracker.db.SightingDatabase;
+import com.demo.android.ufotracker.service.RetrofitClientInstance;
+import com.demo.android.ufotracker.service.SightingAPI;
 import com.demo.android.ufotracker.ui.model.Sighting;
 
 import java.util.ArrayList;
@@ -15,7 +18,14 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SightingRepo {
+    private static final boolean mIsDebuggable = true;
+    private static final String  TAG           = SightingRepo.class.getName();
+
     private SightingDAO sightingDao;
     private LiveData<List<Sighting>> allSightings;
     private Application application;
@@ -31,12 +41,16 @@ public class SightingRepo {
     // For first time user, populate list with test data
     public void populateList() {
         if (Utils.getLastSyncTime(application).equals("0")) { // first time
+            // Make server call to fetch data
+//            fetchSightingList();
             insert(createTestData());
             Utils.saveLastSyncTime(application, "1");
         }
     }
 
-   //methods for database operations
+    /**
+     * methods for database operations
+     */
 
     public void insert(Sighting[] sightings) {
         executor = Executors.newSingleThreadExecutor();
@@ -88,6 +102,27 @@ public class SightingRepo {
         Sighting[] data = new Sighting[dataList.size()];
         data = dataList.toArray(data);
         return data;
+    }
+
+    /**
+     * Make server call to get list of sightings
+     */
+    private void fetchSightingList() {
+        SightingAPI sightingAPI = RetrofitClientInstance.getRetrofitInstance().create(SightingAPI.class);
+        sightingAPI.getAllSightings().enqueue(new Callback<List<Sighting>>() {
+            @Override
+            public void onResponse(Call<List<Sighting>> call, Response<List<Sighting>> response) {
+                if (response.code() == 200) {
+                    List<Sighting> responseList = response.body();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Sighting>> call, Throwable t) {
+                if (mIsDebuggable)
+                    Log.v(TAG, "Web service call error.");
+            }
+        });
     }
 
     /**
