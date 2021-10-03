@@ -1,6 +1,6 @@
 package com.demo.android.ufotracker.service;
 
-import com.demo.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.model.Sighting;
 
 import java.util.List;
 

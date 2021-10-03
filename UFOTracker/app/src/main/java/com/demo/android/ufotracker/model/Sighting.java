@@ -1,4 +1,4 @@
-package com.demo.android.ufotracker.ui.model;
+package com.demo.android.ufotracker.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

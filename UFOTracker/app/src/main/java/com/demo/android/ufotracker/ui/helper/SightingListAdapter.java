@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.demo.android.ufotracker.R;
-import com.demo.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.model.Sighting;
 
 import org.jetbrains.annotations.NotNull;
 

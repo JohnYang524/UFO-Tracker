@@ -7,7 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.demo.android.ufotracker.db.SightingDatabase;
 import com.demo.android.ufotracker.ui.helper.Utils;
-import com.demo.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.model.Sighting;
 
 import org.junit.Assert;
 import org.junit.Test;

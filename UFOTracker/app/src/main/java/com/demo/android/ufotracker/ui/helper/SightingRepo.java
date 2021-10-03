@@ -11,7 +11,7 @@ import com.demo.android.ufotracker.db.SightingDAO;
 import com.demo.android.ufotracker.db.SightingDatabase;
 import com.demo.android.ufotracker.service.RetrofitClientInstance;
 import com.demo.android.ufotracker.service.SightingAPI;
-import com.demo.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.model.Sighting;
 
 import java.util.ArrayList;
 import java.util.List;

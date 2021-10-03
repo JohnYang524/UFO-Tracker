@@ -1,14 +1,12 @@
 package com.demo.android.ufotracker;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.demo.android.ufotracker.databinding.ActivityMainBinding;
 import com.demo.android.ufotracker.ui.helper.Utils;
-import com.demo.android.ufotracker.ui.model.Sighting;
+import com.demo.android.ufotracker.model.Sighting;
 
 import java.util.ArrayList;
 import java.util.List;
