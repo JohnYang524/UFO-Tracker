@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.demo.android.ufotracker.R;
+import com.google.gson.annotations.SerializedName;
 
 /*
 *  Sighting data model.
@@ -15,12 +16,16 @@ public class Sighting {
 
     @NonNull
     @PrimaryKey
+    @SerializedName("id")
     public String id;
     @ColumnInfo(name = "date")
+    @SerializedName("date")
     public String date;
     @ColumnInfo(name = "type")
+    @SerializedName("type")
     public SightingType type;
     @ColumnInfo(name = "speed")
+    @SerializedName("speed")
     public String speed;
 
     public Sighting(String id, String date, SightingType type, String speed) {
