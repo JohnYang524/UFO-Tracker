@@ -44,12 +44,12 @@ public class ExampleInstrumentedTest {
                     Assert.assertEquals(sighting.id, "100");
                     appDb.sightingDAO().delete(sighting);
                 }
-                Sighting testContact = appDb.sightingDAO().findById("100");
-                Assert.assertEquals(testContact, null);
+                Sighting testObject = appDb.sightingDAO().findById("100");
+                Assert.assertEquals(testObject, null);
 
                 appDb.sightingDAO().insertAll(new Sighting[]{sighting});
-                testContact = appDb.sightingDAO().findById("100");
-                Assert.assertNotEquals(testContact, null);
+                testObject = appDb.sightingDAO().findById("100");
+                Assert.assertNotEquals(testObject, null);
             }
         });
     }

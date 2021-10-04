@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.demo.android.ufotracker.ui.helper.SightingRepo;
+import com.demo.android.ufotracker.repo.SightingRepo;
 import com.demo.android.ufotracker.model.Sighting;
 
 import java.util.ArrayList;
@@ -62,6 +62,10 @@ public class SightlingListViewModel extends AndroidViewModel {
 //        }
 //        return mSightingsList;
         mRepo.populateList();
+    }
+
+    public LiveData<List<Sighting>> getSightingList() {
+        return mSightingsList;
     }
 
     public void setTabIndex(int index) {

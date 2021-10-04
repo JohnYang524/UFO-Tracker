@@ -1,5 +1,5 @@
 
-package com.demo.android.ufotracker.ui.helper;
+package com.demo.android.ufotracker.repo;
 
 
 import android.app.Application;
@@ -12,6 +12,7 @@ import com.demo.android.ufotracker.db.SightingDatabase;
 import com.demo.android.ufotracker.service.RetrofitClientInstance;
 import com.demo.android.ufotracker.service.SightingAPI;
 import com.demo.android.ufotracker.model.Sighting;
+import com.demo.android.ufotracker.ui.helper.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

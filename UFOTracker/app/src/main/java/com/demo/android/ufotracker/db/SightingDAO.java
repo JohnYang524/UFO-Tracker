@@ -36,5 +36,5 @@ public interface SightingDAO {
     void delete(Sighting sighting);
 
     @Query("DELETE FROM sighting")
-    void nukeContactTable();
+    void nukeSightingTable();
 }

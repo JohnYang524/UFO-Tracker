@@ -72,21 +72,17 @@ public class SightingListFragment extends Fragment {
             }
         });
 
-        SightingDatabase appDb = SightingDatabase.getInstance(getActivity());
-        appDb.sightingDAO().getAll().observe(getViewLifecycleOwner(), new Observer<List<Sighting>>() {
-            @Override
-            public void onChanged(List<Sighting> sightings) {
-                mViewModel.onSightingListUpdated(sightings);
-                List<Sighting> filteredList = mViewModel.filterList(sightings);
-                if (filteredList == null || filteredList.size() == 0) {
-                    displayEmptyLayout(true);// show empty layout if no data
-                    return;
-                }
-                if (listAdapter == null) {
-                    initSightingList(filteredList);
-                } else {
-                    listAdapter.notifyDataChange(filteredList);
-                }
+        mViewModel.getSightingList().observe(getViewLifecycleOwner(), sightings -> {
+            mViewModel.onSightingListUpdated(sightings);
+            List<Sighting> filteredList = mViewModel.filterList(sightings);
+            if (filteredList == null || filteredList.size() == 0) {
+                displayEmptyLayout(true);// show empty layout if no data
+                return;
+            }
+            if (listAdapter == null) {
+                initSightingList(filteredList);
+            } else {
+                listAdapter.notifyDataChange(filteredList);
             }
         });
 
