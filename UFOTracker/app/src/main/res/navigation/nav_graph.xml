@@ -11,18 +11,18 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_main">
 
-<!--        <action-->
-<!--            android:id="@+id/action_list_to_2nd"-->
-<!--            app:destination="@id/SecondFragment" />-->
+        <action
+            android:id="@+id/action_list_to_2nd"
+            app:destination="@id/DetailsFragment" />
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/SecondFragment"-->
-<!--        android:name="com.demo.android.ufotracker.ui.main.SecondFragment"-->
-<!--        android:label="Second Fragment"-->
-<!--        tools:layout="@layout/fragment_second">-->
+    <fragment
+        android:id="@+id/DetailsFragment"
+        android:name="com.demo.android.ufotracker.ui.view.DetailsFragment"
+        android:label="Details Fragment"
+        tools:layout="@layout/fragment_second">
 
-<!--        <action-->
-<!--            android:id="@+id/action_2nd_to_list"-->
-<!--            app:destination="@id/MainFragment" />-->
-<!--    </fragment>-->
+        <action
+            android:id="@+id/action_2nd_to_list"
+            app:destination="@id/MainFragment" />
+    </fragment>
 </navigation>
