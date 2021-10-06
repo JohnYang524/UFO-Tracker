@@ -54,16 +54,6 @@ public class SightlingListViewModel extends AndroidViewModel {
         populateSightingsList();
     }
 
-    public void populateSightingsList() {
-//        if (mSightingsList == null) {
-//            mSightingsList = new MutableLiveData<>();
-//            // Call to get data here. For testing purpose, the list is populated with sample data.
-//            mSightingsList.setValue(createTestData());
-//        }
-//        return mSightingsList;
-        mRepo.populateList();
-    }
-
     public LiveData<List<Sighting>> getSightingList() {
         return mSightingsList;
     }
@@ -76,14 +66,14 @@ public class SightlingListViewModel extends AndroidViewModel {
         return filteredSightings;
     }
 
+    public void populateSightingsList() {
+        mRepo.populateList();
+    }
+
     public void onNewSightingAdded(Sighting sighting) {
         // For testing purpose, add only the data that matches current displaying category.
         if (sighting.getType().category.tabIndex == mTabIndex.getValue()) {
-//            List<Sighting> dataList = mSightingsList.getValue();
-//            dataList.add(0, sighting);
             mRepo.insert(new Sighting[]{sighting});
-//            mSightingsList.setValue(dataList);
-            refreshFilteredList();
         }
     }
 
